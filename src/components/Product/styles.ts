@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   margin-bottom: 3.2rem;
   ${({ theme }) => css`
     background-color: ${theme.colors.white};
-    border: 1px solid ${theme.colors.lightPink};
+    border: 1px solid ${theme.colors.lightBlue};
     border-radius: ${theme.border.radius.other};
 
     img {

@@ -24,6 +24,9 @@ export const IconWrapper = styled.button<IconWrapperProps>`
     border: none;
     background-color: transparent;
   `}
+  :hover{
+    opacity: 0.5;
+  }
 `;
 
 export const Quantity = styled.p`

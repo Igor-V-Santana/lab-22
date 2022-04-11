@@ -1,28 +1,57 @@
 import Incrementor from "../Incrementor";
 import { Wrapper, Info, Column, Text, WrapperIncrementor } from "./styles";
+import { useProducts } from "../../hooks/useProducts";
 
 export type ProductProps = {
   id: number;
   name: string;
   price: number;
   picture: string;
+  quantity: number;
+  quantityBuy: number;
 };
 
-const Product = ({ id, name, price, picture }: ProductProps) => (
-  <Wrapper>
-    <img src={picture} alt={`Imagem de referência ${name}`} />
+const Product = ({ id, name, price, picture, quantityBuy }: ProductProps) => {
 
-    <Info>
-      <Column>
-        <Text>{name}</Text>
-        <Text>{price}</Text>
-      </Column>
+  const formattedPrice = price.toLocaleString("pt-br", { style: 'currency', currency: 'BRL' });
 
-      <WrapperIncrementor>
-        <Incrementor id={id} quantity={1} />
-      </WrapperIncrementor>
-    </Info>
-  </Wrapper>
-);
+  const { products, setQuantity } = useProducts();
+
+  const product: any = products.find(product => product.id === id);
+
+  const Decrement = () => {
+    if (product.quantityBuy) {
+      product.quantityBuy --;
+      setQuantity(products);
+    }
+  };
+  
+  const Increment = () => {
+    if (product.quantityBuy !== product.quantity) {
+      product.quantityBuy ++;
+      setQuantity(products);
+    }
+  };
+
+  return (
+    <Wrapper>
+      <img src={picture} alt={`Imagem de referência ${name}`} />
+      <Info>
+        <Column>
+          <Text>{name}</Text>
+          <Text>{formattedPrice}</Text>
+        </Column>
+
+        <WrapperIncrementor>
+          <Incrementor
+            quantityBuy={quantityBuy}
+            Decrement={Decrement}
+            Increment={Increment}
+          />
+        </WrapperIncrementor>
+      </Info>
+    </Wrapper>
+  );
+};
 
 export default Product;

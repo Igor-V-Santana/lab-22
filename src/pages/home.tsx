@@ -1,28 +1,24 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Cart from "../components/Cart";
 import { Container } from "../components/Container";
 import Header from "../components/Header";
 import Product from "../components/Product";
+import { useProducts } from "../hooks/useProducts";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [products, setProducts] = useState([]);
-
-  const getProducts = async () => {
-    const response = await axios.get("http://localhost:3001/products");
-    setProducts(response.data);
-  }
+  
+  const { products, setProducts } = useProducts();
 
   useEffect(() => {
-    getProducts();
-  }, [])
+    setProducts();
+  }, []);
 
   return (
     <>
       <Header setIsOpen={setIsOpen} />
       <Container>
-        {products.map(product => <Product {...product} />)}
+        {products.map(product => <Product {...product} key={product.id} />)}
         <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
       </Container>
     </>

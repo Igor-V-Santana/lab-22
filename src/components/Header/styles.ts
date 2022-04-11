@@ -10,7 +10,10 @@ export const Wrapper = styled.header`
 
   > svg {
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
     width: 3rem;
+    :hover{
+      opacity: 0.5;
+    }
   }
 `;
