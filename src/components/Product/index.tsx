@@ -19,14 +19,14 @@ const Product = ({ id, name, price, picture, quantityBuy }: ProductProps) => {
 
   const product: any = products.find(product => product.id === id);
 
-  const Decrement = () => {
+  const DecrementProduct = () => {
     if (product.quantityBuy) {
       product.quantityBuy --;
       setQuantity(products);
     }
   };
   
-  const Increment = () => {
+  const IncrementProduct = () => {
     if (product.quantityBuy !== product.quantity) {
       product.quantityBuy ++;
       setQuantity(products);
@@ -45,8 +45,8 @@ const Product = ({ id, name, price, picture, quantityBuy }: ProductProps) => {
         <WrapperIncrementor>
           <Incrementor
             quantityBuy={quantityBuy}
-            Decrement={Decrement}
-            Increment={Increment}
+            DecrementProduct={DecrementProduct}
+            IncrementProduct={IncrementProduct}
           />
         </WrapperIncrementor>
       </Info>

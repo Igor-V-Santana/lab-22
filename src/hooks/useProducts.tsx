@@ -11,7 +11,8 @@ type Product = {
 export const useProducts = create<Product>((set) => ({
   products: [],
   setProducts: async () => {
-    const response = await axios.get("http://localhost:3001/products");
+    const url = "http://localhost:3001/products"
+    const response = await axios.get(url);
     response.data.map((product: ProductProps) => (product.quantityBuy =  0));
     set(() => ({ products: response.data }))
   },

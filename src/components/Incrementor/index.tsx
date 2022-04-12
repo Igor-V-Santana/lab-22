@@ -5,20 +5,20 @@ import { Wrapper, IconWrapper, Quantity } from "./styles";
 
 type IncrementorProps = {
   quantityBuy: number;
-  Increment: () => void;
-  Decrement: () => void;
+  DecrementProduct: () => void;
+  IncrementProduct: () => void;
 };
 
 const Incrementor = ({
   quantityBuy,
-  Increment,
-  Decrement,
+  DecrementProduct,
+  IncrementProduct,
 }: IncrementorProps) => (
   <Wrapper>
     <IconWrapper>
       <SubtractIcon
       aria-label="Subtract item"
-      onClick={() => Decrement()}
+      onClick={() => DecrementProduct()}
     />
     </IconWrapper>
 
@@ -27,7 +27,7 @@ const Incrementor = ({
     <IconWrapper>
       <PlusIcon 
       aria-label="Add item"
-      onClick={() => Increment()} 
+      onClick={() => IncrementProduct()} 
     />
     </IconWrapper>
   </Wrapper>
